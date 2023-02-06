@@ -1,4 +1,4 @@
-package com.entity;
+package com.company.entity;
 
 import jakarta.persistence.*;
 
@@ -17,7 +17,7 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> productList;
 
     public Category() {

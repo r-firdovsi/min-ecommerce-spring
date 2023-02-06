@@ -1,4 +1,4 @@
-package com.form;
+package com.company.form;
 
 public class UserForm {
 }
