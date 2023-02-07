@@ -1,7 +1,7 @@
 package com.company.dto;
 
 import com.company.entity.Category;
-import com.company.entity.Image;
+import com.company.entity.Photo;
 import com.company.entity.Product;
 
 import java.util.List;
@@ -12,10 +12,8 @@ public class ProductDTO {
     private String description;
     private double price;
     private double discountedPrice;
-    private String mainImage;
+    private String image;
     private int quantity;
-    private Category category;
-    private List<Image> imageList;
 
     public ProductDTO() {
     }
@@ -26,22 +24,18 @@ public class ProductDTO {
         this.description = p.getDescription();
         this.price = p.getPrice();
         this.discountedPrice = p.getDiscountedPrice();
-        this.mainImage = p.getMainImage();
+        this.image = p.getPhoto();
         this.quantity = p.getQuantity();
-        this.category = p.getCategory();
-        this.imageList = p.getImageList();
     }
 
-    public ProductDTO(int id, String name, String description, double price, double discountedPrice, String mainImage, int quantity, Category category, List<Image> imageList) {
+    public ProductDTO(int id, String name, String description, double price, double discountedPrice, String image, int quantity, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.discountedPrice = discountedPrice;
-        this.mainImage = mainImage;
+        this.image = image;
         this.quantity = quantity;
-        this.category = category;
-        this.imageList = imageList;
     }
 
     public long getId() {
@@ -84,12 +78,12 @@ public class ProductDTO {
         this.discountedPrice = discountedPrice;
     }
 
-    public String getMainImage() {
-        return mainImage;
+    public String getImage() {
+        return image;
     }
 
-    public void setMainImage(String mainImage) {
-        this.mainImage = mainImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getQuantity() {
@@ -98,21 +92,5 @@ public class ProductDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Image> getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
     }
 }

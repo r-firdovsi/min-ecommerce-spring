@@ -23,19 +23,19 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @OneToMany
-    private List<Wishlist> wishList;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> favorites;
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String surname, int age, String email, List<Wishlist> wishList) {
+    public Customer(Long id, String name, String surname, int age, String email) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
-        this.wishList = wishList;
     }
 
     public Long getId() {
@@ -76,13 +76,5 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Wishlist> getWishList() {
-        return wishList;
-    }
-
-    public void setWishList(List<Wishlist> wishList) {
-        this.wishList = wishList;
     }
 }

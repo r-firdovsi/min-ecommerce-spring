@@ -1,10 +1,11 @@
 package com.company.controller;
 
 import com.company.dto.ProductDTO;
-import com.company.entity.Category;
 import com.company.entity.Product;
 import com.company.service.inter.CategoryServiceInter;
 import com.company.service.inter.ProductServiceInter;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,12 +34,8 @@ public class ProductRestController {
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
         product.setDiscountedPrice(productDTO.getDiscountedPrice());
-        product.setMainImage(productDTO.getMainImage());
+        product.setPhoto(productDTO.getImage());
         product.setQuantity(productDTO.getQuantity());
-
-//        Category category = categoryService.getCategory(productDTO.getCategory());
-//        product.setCategory(productDTO.getCategory());
-
         return productService.addProduct(product);
     }
 }

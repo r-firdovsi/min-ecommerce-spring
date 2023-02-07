@@ -27,28 +27,27 @@ public class Product {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "main_image")
-    private String mainImage;
+    @Column(name = "main_photo")
+    private String photo;
 
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "photo_id"))
+    private List<Category> categories;
 
-    @OneToMany(mappedBy = "product")
-    private List<Image> imageList;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Photo> photos;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, double price, double discountedPrice, String mainImage, Category category, List<Image> imageList) {
+    public Product(Long id, String name, String description, double price, double discountedPrice, String photo, Category category, List<Photo> photos) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.discountedPrice = discountedPrice;
-        this.mainImage = mainImage;
-        this.category = category;
-        this.imageList = imageList;
+        this.photo = photo;
+        this.photos = photos;
     }
 
     public Long getId() {
@@ -99,27 +98,19 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getMainImage() {
-        return mainImage;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setMainImage(String mainImage) {
-        this.mainImage = mainImage;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Photo> getPhotos() {
+        return photos;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Image> getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 }

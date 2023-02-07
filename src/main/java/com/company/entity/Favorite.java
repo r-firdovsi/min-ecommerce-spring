@@ -3,24 +3,24 @@ package com.company.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Wishlist {
+public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Wishlist() {
+    public Favorite() {
     }
 
-    public Wishlist(Long id, Product product, Customer customer) {
+    public Favorite(Long id, Product product, Customer customer) {
         this.id = id;
         this.product = product;
         this.customer = customer;
