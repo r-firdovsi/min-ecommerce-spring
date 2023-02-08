@@ -31,7 +31,7 @@ public class Product {
     private String photo;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "photo_id"))
+    @JoinTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

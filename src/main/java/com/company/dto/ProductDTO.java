@@ -12,7 +12,7 @@ public class ProductDTO {
     private String description;
     private double price;
     private double discountedPrice;
-    private String image;
+    private String photo;
     private int quantity;
 
     public ProductDTO() {
@@ -24,17 +24,17 @@ public class ProductDTO {
         this.description = p.getDescription();
         this.price = p.getPrice();
         this.discountedPrice = p.getDiscountedPrice();
-        this.image = p.getPhoto();
+        this.photo = p.getPhoto();
         this.quantity = p.getQuantity();
     }
 
-    public ProductDTO(int id, String name, String description, double price, double discountedPrice, String image, int quantity, Category category) {
+    public ProductDTO(int id, String name, String description, double price, double discountedPrice, String photo, int quantity, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.discountedPrice = discountedPrice;
-        this.image = image;
+        this.photo = photo;
         this.quantity = quantity;
     }
 
@@ -78,12 +78,12 @@ public class ProductDTO {
         this.discountedPrice = discountedPrice;
     }
 
-    public String getImage() {
-        return image;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public int getQuantity() {

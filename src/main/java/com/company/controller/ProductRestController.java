@@ -1,12 +1,12 @@
 package com.company.controller;
 
 import com.company.dto.ProductDTO;
+import com.company.dto.ResponseDTO;
 import com.company.entity.Product;
 import com.company.service.inter.CategoryServiceInter;
 import com.company.service.inter.ProductServiceInter;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,23 +19,25 @@ public class ProductRestController {
     @Autowired
     private ProductServiceInter productService;
 
-    @Autowired
-    private CategoryServiceInter categoryService;
-
     @GetMapping("/products")
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public ResponseEntity<ResponseDTO> getProducts() {
+        List<Product> products = productService.getProducts();
+
+        return ResponseEntity.ok(ResponseDTO.of(products));
     }
 
     @PostMapping("/products")
-    public Product createProducts(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
         Product product = new Product();
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
         product.setDiscountedPrice(productDTO.getDiscountedPrice());
-        product.setPhoto(productDTO.getImage());
+        product.setPhoto(productDTO.getPhoto());
         product.setQuantity(productDTO.getQuantity());
-        return productService.addProduct(product);
+
+        productDTO = new ProductDTO(productService.addProduct(product));
+
+        return ResponseEntity.ok(ResponseDTO.of(productDTO));
     }
 }
